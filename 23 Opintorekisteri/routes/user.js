@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const arviointi = require('../models/arviointi_model');
+const user = require('../models/user_model');
 
 router.get('/',
     function (request, response) {
-        arviointi.getAll(function (err, dbResult) {
+        user.getAll(function (err, dbResult) {
             if (err) {
                 response.json(err);
             } else {
@@ -14,9 +14,9 @@ router.get('/',
         })
     });
 
-router.get('/:id',
+router.get('/:uname',
     function (request, response) {
-        arviointi.getOne(request.params.id, function (err, dbResult) {
+        user.getOne(request.params.id, function (err, dbResult) {
             if (err) {
                 response.json(err);
             } else {
@@ -28,7 +28,7 @@ router.get('/:id',
 
 router.post('/', 
 function(request, response) {
-  arviointi.add(request.body, function(err, dbResult) {
+  user.add(request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -38,9 +38,9 @@ function(request, response) {
 });
 
 
-router.delete('/:id', 
+router.delete('/:uname', 
 function(request, response) {
-  arviointi.delete(request.params.id, function(err, dbResult) {
+  user.delete(request.params.id, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -52,7 +52,7 @@ function(request, response) {
 
 router.put('/:id', 
 function(request, response) {
-  arviointi.update(request.params.id, request.body, function(err, dbResult) {
+  user.update(request.params.id, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
